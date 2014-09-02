@@ -1,3 +1,9 @@
-body {
-	color: green;
+.rating {
+
+}
+
+.rating:hover {
+	border-radius: 3px;
+	background-color: #0FFAFA;
+	border: 1px solid;
 }
