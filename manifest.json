@@ -4,10 +4,10 @@
  	 "description": "Choose your UCSB courses more efficiently with ratings from RateMyProfessors.com.", 
   	"version": "1.0",
 
- 	 "permissions": ["http://*/*", "https://*/*"],
+ 	 "permissions": ["http://*/"],
 
   	"background": {
-    	"scripts": ["eventPage.js"],
+    	"scripts": ["professorPage.js"],
     	"persistent": false
  	 },
 

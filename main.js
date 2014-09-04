@@ -14,7 +14,6 @@ for (var i=3; i<cells.length; i+=18) {
 		
 		//create link to professor rating
 		link = document.createElement('a');
-		//link.className = 'ratingLink';
 		var searchName = professors[profCount].split(' ')[0];
 		link.href = 'http://www.ratemyprofessors.com/SelectTeacher.jsp?searchName=' + searchName + '&search_submit1=Search&sid=1077';
 		link.innerHTML = '<input class="rating" type="button" value="Rating" />';
@@ -23,5 +22,27 @@ for (var i=3; i<cells.length; i+=18) {
 		
 		profCount++;
 	}
-
 }
+
+
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "http://www.ratemyprofessors.com/SelectTeacher.jsp?sid=1077", true);
+xhr.onreadystatechange = function() {
+  if (xhr.readyState == 4) {
+    var arr = xhr.getElementsByClassName('profDept').innerText;
+    cells[3].innerHTML = 'hello';
+  }
+}
+xhr.send();
+
+/*
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'http://www.ratemyprofessors.com/SelectTeacher.jsp?sid=1077)', true);
+//cells[3].innerText = 'hello';
+//var arr = xhr.getElementsByClassName('profDept').innerText;
+
+cells[3].innerHTML = 'hello';
+*/
+
+
+
