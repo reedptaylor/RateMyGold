@@ -12,17 +12,22 @@ function main() {
 			//slice off remaining space at end and push to professor array
 			professors.push(profName.slice(0,-1));
 		
-			//create link to professor rating
-			link = document.createElement('a');
+			//create button for professor rating below professor name
+			div = document.createElement('div');
 			var searchName = professors[profCount].split(' ')[0];
-			var address = 'http://www.ratemyprofessors.com/SelectTeacher.jsp?searchName=' + searchName + '&search_submit1=Search&sid=1077';
-			link.href = address;
-			link.innerHTML = '<input class="rating" type="button" value="Rating" />';
-
-			cells[i+9].appendChild(link);
+			div.url = 'http://www.ratemyprofessors.com/SelectTeacher.jsp?searchName=' + searchName + '&search_submit1=Search&sid=1077';
+			div.innerHTML = '<input class="rating" type="button" value="Rating" />';
+			div.addEventListener("click", action);
+			div.cellNum = i+9;
+			
+			cells[i+9].appendChild(div);
 
 			profCount++;
 		}
+	}
+
+	function action(){
+		cells[this.cellNum].innerHTML = this.url;
 	}
 
 	var xhr = new XMLHttpRequest();
