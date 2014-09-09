@@ -34,23 +34,37 @@ function main() {
 			this.clicked = false;
 		}
 		else{
-			//show popup
+			//change the button to say "Hide Rating"
 			this.clicked = true;
 			this.innerHTML = '<input class="rating" type="button" value="Hide Rating" />';
 
+			//create and show popup
 			var popup = document.createElement('div');
 			popup.className = 'popup';
 
-			var link = document.createElement('p');
-			link.innerText = this.url;
-
-			popup.appendChild(link);
 			this.cell.style.position = 'relative';
 			this.cell.appendChild(popup);
+
+			//create a new XMLHttpRequest to get data
+			var xhr = new XMLHttpRequest();
+			xhr.popup = popup;
+			var url = this.url;
+			xhr.open('GET', url, true);
+
+			xhr.onreadystatechange=function() {
+  				if (xhr.readyState==4 && xhr.status==200) {
+   				var data = xhr.response;
+   				this.popup.innerHTML = data;
+   				var test = document.getElementsByClassName('profName');
+   				//test[2] = test[2].getElementsByTagName('a');
+   				this.popup.innerHTML = test[2].innerHTML;
+    			}
+  			}
+  			xhr.send();
 		}
 	}
 
-
+/*
 	var xhr = new XMLHttpRequest();
 	var url = 'http://www.ratemyprofessors.com/SelectTeacher.jsp?sid=1077';
 	xhr.open('GET', url, true);
@@ -65,7 +79,7 @@ function main() {
    		}
   	}
   	xhr.send();
-
+*/
 };
 
 
