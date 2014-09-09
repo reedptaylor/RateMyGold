@@ -1,5 +1,5 @@
 .rating {
-
+	width: 85px;
 }
 
 .rating:hover {
@@ -7,3 +7,19 @@
 	background-color: #0FFAFA;
 	border: 1px solid;
 }
+
+.popup {
+    position: absolute;
+    top: -141px;
+    left: 253px;
+    margin: 100px auto;
+    width: 260px;
+    height: 42px;
+    font-family: verdana;
+    font-size: 13px;
+    padding: 10px;
+    background-color: rgb(240,240,240);
+    border: 2px solid grey;
+    z-index: 100000000000000000;
+}
+

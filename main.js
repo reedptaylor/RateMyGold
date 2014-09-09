@@ -3,7 +3,7 @@ function main() {
 	var professors = [];
 	var profCount = 0;
 
-	//increment list to retrieve professor name only
+	//increment list to retrieve professor cell only
 	for (var i=3; i<cells.length; i+=18) {
 		//slice off &nbsp; character
 		var profName = cells[i].innerText.slice(0,-1);	
@@ -11,24 +11,45 @@ function main() {
 
 			//slice off remaining space at end and push to professor array
 			professors.push(profName.slice(0,-1));
-		
-			//create button for professor rating below professor name
-			div = document.createElement('div');
+
+			//create button for professor rating below professor name and add an event listener
+			var div = cells[i+9];
 			var searchName = professors[profCount].split(' ')[0];
 			div.url = 'http://www.ratemyprofessors.com/SelectTeacher.jsp?searchName=' + searchName + '&search_submit1=Search&sid=1077';
-			div.innerHTML = '<input class="rating" type="button" value="Rating" />';
-			div.addEventListener("click", action);
-			div.cellNum = i+9;
-			
-			cells[i+9].appendChild(div);
+			div.innerHTML = '<input class="rating" type="button" value="Show Rating" />';
+			div.cell = cells[i+10];
+			div.clicked = false;
+			div.addEventListener('click', openPopup);
 
 			profCount++;
 		}
 	}
 
-	function action(){
-		cells[this.cellNum].innerHTML = this.url;
+	//action on button click 
+	function openPopup() {
+		if (this.clicked == true) {
+			//remove popup
+			this.cell.innerHTML = '';
+			this.innerHTML = '<input class="rating" type="button" value="Show Rating" />';
+			this.clicked = false;
+		}
+		else{
+			//show popup
+			this.clicked = true;
+			this.innerHTML = '<input class="rating" type="button" value="Hide Rating" />';
+
+			var popup = document.createElement('div');
+			popup.className = 'popup';
+
+			var link = document.createElement('p');
+			link.innerText = this.url;
+
+			popup.appendChild(link);
+			this.cell.style.position = 'relative';
+			this.cell.appendChild(popup);
+		}
 	}
+
 
 	var xhr = new XMLHttpRequest();
 	var url = 'http://www.ratemyprofessors.com/SelectTeacher.jsp?sid=1077';
@@ -45,27 +66,9 @@ function main() {
   	}
   	xhr.send();
 
-	//handler(callback, 'http://www.ratemyprofessors.com/SelectTeacher.jsp?sid=1077');
-};
-/*
-function handler(callback, url) {
-var xhr = new XMLHttpRequest();
-//var url = 'http://www.ratemyprofessors.com/SelectTeacher.jsp?sid=1077';
-xhr.open('GET', url, true);
-
-xhr.onreadystatechange=function() {
-	if (xhr.readyState==4 && xhr.status==200)
-	{
- 	  	callback(xhr.responseText)
-    }
-}
-  	xhr.send();
 };
 
-function callback(text){
-cells[3].innerHTML = text;
-}
-*/
+
 main();
 
 
