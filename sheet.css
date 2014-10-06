@@ -1,12 +1,27 @@
-.rating {
-	width: 85px;
+.ratingButton {
+    background-color:#2131e8;
+    -moz-border-radius:28px;
+    -webkit-border-radius:28px;
+    border-radius:28px;
+    border:1px solid #f7ff00;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:verdana;
+    font-size:10px;
+    padding:1px 6px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #3b46bf;
+    width: 80px;
+}
+.ratingButton:hover {
+    background-color:#4274cc;
+}
+.ratingButton:active {
+    position:relative;
+    top:1px;
 }
 
-.rating:hover {
-	border-radius: 3px;
-	background-color: #0FFAFA;
-	border: 1px solid;
-}
 
 .popup {
     position: absolute;
