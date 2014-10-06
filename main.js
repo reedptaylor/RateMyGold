@@ -15,7 +15,7 @@ function main() {
 			//create button for professor rating below professor name and add an event listener
 			var div = cells[i+9];
 			var searchName = professors[profCount].split(' ')[0];
-			div.url = 'http://www.ratemyprofessors.com/SelectTeacher.jsp?searchName=' + searchName + '&search_submit1=Search&sid=1077';
+			div.url = 'http://www.ratemyprofessors.com/search.jsp?queryBy=teacherName&schoolName=university+of+california+santa+barbara&queryoption=HEADER&query='+ searchName +'&facetSearch=true';
 			div.innerHTML = '<input class="ratingButton" type="button" value="Show Rating" />';
 			div.cell = cells[i+10];
 			div.clicked = false;
@@ -55,9 +55,9 @@ function main() {
   				if (xhr.readyState==4 && xhr.status==200) {
    				var data = xhr.response;
    				this.popup.innerHTML = data;
-   				var test = document.getElementsByClassName('profName');//causing error when prof search turns up null
+   				//var test = document.getElementsByClassName('profName');//causing error when prof search turns up null
 
-   				this.popup.innerHTML = test[2].innerHTML;
+   				//this.popup.innerHTML = test[2].innerHTML;
 
 
     			}
