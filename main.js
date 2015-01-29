@@ -49,7 +49,8 @@ function main() {
 			var xhr = new XMLHttpRequest();
 			xhr.popup = popup;
 			var url = this.url;
-			xhr.open('GET', url, true);
+			//xhr.open('GET', url, true);
+			xhr.open('GET', 'http://www.ratemyprofessors.com/', true);
 
 			xhr.onreadystatechange=function() {
   				if (xhr.readyState==4 && xhr.status==200) {
@@ -62,8 +63,8 @@ function main() {
 
     			}
   			}
-  		xhr.send();
-	}//end else
+  			xhr.send();
+		}//end else
 	}//end openPopup()
 };//end main
 
