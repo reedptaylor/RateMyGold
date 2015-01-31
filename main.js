@@ -57,6 +57,8 @@ function openPopup() {
 				}, function(responseText) {
 					tmp             = document.createElement('div');
    					tmp.innerHTML   = responseText;
+   					var proffName	= tmp.getElementsByClassName('pfname')[0].innerText;
+   					var proflName	= tmp.getElementsByClassName('plname')[0].innerText;
    					var ratingInfo  = tmp.getElementsByClassName('left-breakdown')[0];
    					tmp.innerHTML   = ratingInfo.innerHTML;
 
@@ -82,6 +84,7 @@ function openPopup() {
    					tmp.remove();
  
    					//create the ratings divs
+   					var profNameDiv	   = document.createElement('div');
    					var overallDiv     = document.createElement('div');
 					var avgGradeDiv    = document.createElement('div');
 					var hotnessDiv	   = document.createElement('div');
@@ -90,6 +93,7 @@ function openPopup() {
 					var easinessDiv    = document.createElement('div');
 
 					//assign class names for styling
+					profNameDiv.className 	 = 'rating';
 					overallDiv.className     = 'rating';
 					avgGradeDiv.className    = 'rating';
 					hotnessDiv.className     = 'rating';
@@ -98,6 +102,7 @@ function openPopup() {
 					easinessDiv.className    = 'rating';
 
 					//put rating data in divs
+					profNameDiv.innerText	 = 	proffName + " "    + proflName;
 					overallDiv.innerText     = 'Overall Quality: ' + overall.innerHTML;
 					avgGradeDiv.innerText    = 'Average Grade: '   + avgGrade.innerHTML;
 					hotnessDiv.innerText     = 'Hotness: '         + hotnessFinal;
@@ -107,6 +112,7 @@ function openPopup() {
 
 					//add divs to popup
 					popup.innerHTML = ''; //remove 'loading...' text
+					popup.appendChild(profNameDiv);
    					popup.appendChild(overallDiv);
    					popup.appendChild(avgGradeDiv);
    					popup.appendChild(hotnessDiv);
