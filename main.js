@@ -10,7 +10,8 @@ function main() {
 			professors.push(profName.slice(0,-1)); //slice off remaining space at end and push to professor array
 			var div        = cells[i+9];
 			var searchName = professors[profCount].split(' ')[0];
-			div.url        = 'http://www.ratemyprofessors.com/search.jsp?queryBy=teacherName&schoolName=university+of+california+santa+barbara&queryoption=HEADER&query='+ searchName +'&facetSearch=true';
+			div.searchURL  = 'http://www.ratemyprofessors.com/search.jsp?queryBy=teacherName&schoolName=university+of+california+santa+barbara&queryoption=HEADER&query='+ searchName +'&facetSearch=true';
+			div.profURL    = '';
 			div.innerHTML  = '<input class="ratingButton" type="button" value="SHOW RATING" />';
 			div.cell       = cells[i+10];
 			div.clicked    = false;
@@ -37,12 +38,15 @@ function openPopup() {
 
 		//get event page to do xmlhttprequest
 		chrome.runtime.sendMessage({
-    		url: this.url,
+    		url: this.searchURL,
 		}, function(responseText) {
-   			popup.innerHTML = responseText;
+			var test = document.createElement('div');
+   			test.innerHTML = responseText;
+   			var x = test.getElementsByClassName('listing PROFESSOR'); //throw exception here if null
+   			popup.innerHTML = x[0].innerText;
+   			//test.innerHTML = x;
+   			//popup.appendChild(test);
 		});
-
-
 	}
 }
 
