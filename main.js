@@ -35,18 +35,12 @@ function openPopup() {
 		this.cell.style.position = 'relative';
 		this.cell.appendChild(popup);
 
-		var xhr = new XMLHttpRequest();
-		xhr.popup = popup;
 
-		xhr.open("GET", chrome.extension.getURL(this.url), true);
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4) {
-				//var data = xhr.responseText;
-   				//xhr.popup.innerHTML = "test";
-   				alert(xhr.responseXML);
-			}
-		}
-		xhr.send();
+		chrome.runtime.sendMessage({
+    		url: this.url,
+		}, function(responseText) {
+   			popup.innerHTML = responseText;
+		});
 
 
 	}
