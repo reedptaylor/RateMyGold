@@ -40,11 +40,15 @@ function openPopup() {
 		chrome.runtime.sendMessage({
     		url: this.searchURL,
 		}, function(responseText) {
-			var tmp = document.createElement('div');
+			var tmp = document.createElement('div');//make a temp element so that we can search through its html
    			tmp.innerHTML = responseText;
-   			var x = tmp.getElementsByClassName('listing PROFESSOR'); //throw exception here if null
+   			var foundProfs = tmp.getElementsByClassName('listing PROFESSOR'); //throw exception here if null
 
-   			popup.innerHTML = x[0].innerHTML;
+   			//need to iterate through found profs to find the one we need
+   			tmp.innerHTML = foundProfs[0].innerHTML;
+   			var link = tmp.getElementsByTagName('a');
+   			this.profURL = 'http://www.ratemyprofessors.com/' + link[0].toString().slice(23);
+   			popup.innerText = this.profURL;
    			//test.innerHTML = x;
    			//popup.appendChild(test);
 		});
