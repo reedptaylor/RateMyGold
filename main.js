@@ -32,10 +32,10 @@ function openPopup() {
 		this.innerHTML  = '<input class="ratingButton" type="button" value="HIDE RATING" />';	
 		var popup       = document.createElement('div');
 		popup.className = 'popup';
+		popup.innerText = 'Loading...';
 
 		this.cell.style.position = 'relative';
 		this.cell.appendChild(popup);
-		popup.innerText = 'Loading...'
 
 		chrome.runtime.sendMessage({ //need a separate event page to do the xmlhttprequest because of http to https issue
     		url: this.searchURL,
