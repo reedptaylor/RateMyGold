@@ -1,10 +1,15 @@
 {
 	"manifest_version": 2, 
- 	 "name": "RateMyGold",
- 	 "description": "Choose your UCSB courses more efficiently with ratings from RateMyProfessors.com.", 
+ 	"name": "RateMyGold",
+ 	"description": "Choose your UCSB courses more efficiently with ratings from RateMyProfessors.com.", 
   	"version": "1.0",
 
 	"permissions": ["http://*/*"],
+
+ 	"background": {
+    	"scripts": ["eventPage.js"],
+    	"persistent": false
+  	},
 
  	"content_scripts": [
 		{
