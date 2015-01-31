@@ -11,7 +11,7 @@ function main() {
 			var div        = cells[i+9];
 			var searchName = professors[profCount].split(' ')[0];
 			div.url        = 'http://www.ratemyprofessors.com/search.jsp?queryBy=teacherName&schoolName=university+of+california+santa+barbara&queryoption=HEADER&query='+ searchName +'&facetSearch=true';
-			div.innerHTML  = '<input class="ratingButton" type="button" value="Show Rating" />';
+			div.innerHTML  = '<input class="ratingButton" type="button" value="SHOW RATING" />';
 			div.cell       = cells[i+10];
 			div.clicked    = false;
 			div.addEventListener('click', openPopup);
@@ -23,12 +23,12 @@ function main() {
 function openPopup() {
 	if (this.clicked == true) {
 		this.cell.innerHTML = '';
-		this.innerHTML      = '<input class="ratingButton" type="button" value="Show Rating" />';
+		this.innerHTML      = '<input class="ratingButton" type="button" value="SHOW RATING" />';
 		this.clicked        = false;
 	}
 	else {
 		this.clicked    = true;
-		this.innerHTML  = '<input class="ratingButton" type="button" value="Hide Rating" />';	
+		this.innerHTML  = '<input class="ratingButton" type="button" value="HIDE RATING" />';	
 		var popup       = document.createElement('div');
 		popup.className = 'popup';
 
