@@ -93,13 +93,13 @@ function openPopup() {
 					var easinessDiv    = document.createElement('div');
 
 					//assign class names for styling
-					profNameDiv.className 	 = 'rating';
-					overallDiv.className     = 'rating';
-					avgGradeDiv.className    = 'rating';
-					hotnessDiv.className     = 'rating';
-					helpfulnessDiv.className = 'rating';
-					clarityDiv.className     = 'rating';
-					easinessDiv.className    = 'rating';
+					profNameDiv.className 	 = 'profName';
+					overallDiv.className     = 'overall';
+					avgGradeDiv.className    = 'avgGrade';
+					hotnessDiv.className     = 'hotness';
+					helpfulnessDiv.className = 'helpfulness';
+					clarityDiv.className     = 'clarity';
+					easinessDiv.className    = 'easiness';
 
 					//put rating data in divs
 					profNameDiv.innerText	 = 	proffName + " "    + proflName;
