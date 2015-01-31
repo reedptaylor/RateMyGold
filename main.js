@@ -67,14 +67,12 @@ function openPopup() {
    					var otherRatings  = tmp.getElementsByClassName('rating');
 
    					//handle hotness
-					var hotness       = overallAndAvg[2];
-   					var isCold		  = /cold/.test(hotness.innerHTML);
-   					var isWarm		  = /warm/.test(hotness.innerHTML); 
-   					var isHot		  = /hot/.test(hotness.innerHTML);
-   					var hotnessFinal  = " - ";
-   					if(isCold)        {hotnessFinal = "Cold";}
-   					else if(isWarm)   {hotnessFinal = "Warm";}
-   					else if(isHot)    {hotnessFinal = "Hot";}
+					var hotness       		= overallAndAvg[2];
+   					var isCold		  		= /cold/.test(hotness.innerHTML);
+   					var isWarm		 		= /warm/.test(hotness.innerHTML); 
+   					var hotnessFinal  		= " - ";
+   					if(isCold || isWarm) 	{hotnessFinal = "Not hot";}
+   					else 		    		{hotnessFinal = "Hot";}
 
    					var overall       = overallAndAvg[0];
    					var avgGrade      = overallAndAvg[1];
