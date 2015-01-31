@@ -99,6 +99,8 @@ function openPopup() {
    					popup.appendChild(clarityDiv);
    					popup.appendChild(easinessDiv);
 
+					
+
 				});//end message
 			}//end else
 		});//end message
