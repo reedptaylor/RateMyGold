@@ -18,8 +18,8 @@ function main() {
 			div.addEventListener('click', openPopup);
 			profCount++;
 		}//end if
-	}
-}
+	}//end for
+}//end main()
 
 function openPopup() {
 	if (this.clicked == true) { //happens when button was clicked while active
@@ -35,6 +35,7 @@ function openPopup() {
 
 		this.cell.style.position = 'relative';
 		this.cell.appendChild(popup);
+		popup.innerText = 'Loading...'
 
 		chrome.runtime.sendMessage({ //need a separate event page to do the xmlhttprequest because of http to https issue
     		url: this.searchURL,
@@ -51,10 +52,10 @@ function openPopup() {
    				var link       = tmp.getElementsByTagName('a');
    				this.profURL   = 'http://www.ratemyprofessors.com/' + link[0].toString().slice(23); //this is the URL
 
-   				chrome.runtime.sendMessage({
+   				chrome.runtime.sendMessage({ //make another xmlhttprequest using the actual professor link
     				url: this.profURL,
 				}, function(responseText) {
-					tmp         = document.createElement('div');
+					tmp             = document.createElement('div');
    					tmp.innerHTML   = responseText;
    					var ratingInfo  = tmp.getElementsByClassName('left-breakdown')[0];
    					tmp.innerHTML   = ratingInfo.innerHTML;
@@ -91,22 +92,18 @@ function openPopup() {
 					easinessDiv.innerText    = 'Easiness: '        + easiness.innerHTML;
 
 					//add divs to popup
+					popup.innerHTML = ''; //remove 'loading...' text
    					popup.appendChild(overallDiv);
    					popup.appendChild(avgGradeDiv);
    					popup.appendChild(helpfulnessDiv);
    					popup.appendChild(clarityDiv);
    					popup.appendChild(easinessDiv);
 
-				});
-			}
-
-		});
-	}
-}
-
-//get event page to do xmlhttprequest
-		
-
+				});//end message
+			}//end else
+		});//end message
+	}//end else
+}//end openPopup()
 
 main();
 
