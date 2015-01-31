@@ -4,6 +4,8 @@
  	"description": "Choose your UCSB courses more efficiently with ratings from RateMyProfessors.com.", 
   	"version": "1.0",
 
+  	"icons": { "16": "icon.png", "48": "icon.png", "128": "icon.png" },    
+
 	"permissions": ["http://*/*"],
 
  	"background": {
