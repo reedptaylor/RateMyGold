@@ -35,7 +35,7 @@ function openPopup() {
 		this.cell.style.position = 'relative';
 		this.cell.appendChild(popup);
 
-
+		//get event page to do xmlhttprequest
 		chrome.runtime.sendMessage({
     		url: this.url,
 		}, function(responseText) {
