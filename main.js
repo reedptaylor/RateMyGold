@@ -69,9 +69,10 @@ function openPopup() {
    					var isCold		  = /cold/.test(hotness.innerHTML);
    					var isWarm		  = /warm/.test(hotness.innerHTML); 
    					var isHot		  = /hot/.test(hotness.innerHTML);
-   					if(isCold)        {var hotnessFinal = "Cold";}
-   					else if(isWarm)   {var hotnessFinal = "Warm";}
-   					else if(isHot)    {var hotnessFinal = "Hot";}
+   					var hotnessFinal  = " - ";
+   					if(isCold)        {hotnessFinal = "Cold";}
+   					else if(isWarm)   {hotnessFinal = "Warm";}
+   					else if(isHot)    {hotnessFinal = "Hot";}
 
    					var overall       = overallAndAvg[0];
    					var avgGrade      = overallAndAvg[1];
@@ -83,7 +84,7 @@ function openPopup() {
    					//create the ratings divs
    					var overallDiv     = document.createElement('div');
 					var avgGradeDiv    = document.createElement('div');
-					var hotnessDiv	   = document.createElement('div');//
+					var hotnessDiv	   = document.createElement('div');
 					var helpfulnessDiv = document.createElement('div');
 					var clarityDiv     = document.createElement('div');
 					var easinessDiv    = document.createElement('div');
@@ -99,7 +100,7 @@ function openPopup() {
 					//put rating data in divs
 					overallDiv.innerText     = 'Overall Quality: ' + overall.innerHTML;
 					avgGradeDiv.innerText    = 'Average Grade: '   + avgGrade.innerHTML;
-					hotnessDiv.innerText     = 'Hotness: '         + hotnessFinal; //
+					hotnessDiv.innerText     = 'Hotness: '         + hotnessFinal;
 					helpfulnessDiv.innerText = 'Helpfulness: '     + helpfulness.innerHTML;
 					clarityDiv.innerText     = 'Clarity: '         + clarity.innerHTML;
 					easinessDiv.innerText    = 'Easiness: '        + easiness.innerHTML;
@@ -112,7 +113,6 @@ function openPopup() {
    					popup.appendChild(helpfulnessDiv);
    					popup.appendChild(clarityDiv);
    					popup.appendChild(easinessDiv);
-   					//test
 
 				});//end message
 			}//end else
