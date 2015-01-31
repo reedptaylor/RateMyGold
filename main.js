@@ -36,24 +36,34 @@ function openPopup() {
 		this.cell.style.position = 'relative';
 		this.cell.appendChild(popup);
 
-		//get event page to do xmlhttprequest
 		chrome.runtime.sendMessage({
     		url: this.searchURL,
 		}, function(responseText) {
-			var tmp = document.createElement('div');//make a temp element so that we can search through its html
-   			tmp.innerHTML = responseText;
+			var tmp        = document.createElement('div');//make a temp element so that we can search through its html
+   			tmp.innerHTML  = responseText;
    			var foundProfs = tmp.getElementsByClassName('listing PROFESSOR'); //throw exception here if null
+   			tmp.innerHTML  = foundProfs[0].innerHTML;
+   			var link       = tmp.getElementsByTagName('a');
+   			this.profURL   = 'http://www.ratemyprofessors.com/' + link[0].toString().slice(23); //this is the URL
+   			
 
-   			//need to iterate through found profs to find the one we need
-   			tmp.innerHTML = foundProfs[0].innerHTML;
-   			var link = tmp.getElementsByTagName('a');
-   			this.profURL = 'http://www.ratemyprofessors.com/' + link[0].toString().slice(23);
-   			popup.innerText = this.profURL;
-   			//test.innerHTML = x;
-   			//popup.appendChild(test);
+   				chrome.runtime.sendMessage({
+    				url: this.profURL,
+				}, function(responseText) {
+					var tmp         = document.createElement('div');//make a temp element so that we can search through its html
+   					tmp.innerHTML   = responseText;
+   					var foundProfs  = tmp.getElementsByClassName('rating-breakdown');
+   					popup.innerHTML = foundProfs[0].innerHTML;
+				});
+
+
 		});
 	}
 }
+
+//get event page to do xmlhttprequest
+		
+
 
 main();
 
