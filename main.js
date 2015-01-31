@@ -40,10 +40,11 @@ function openPopup() {
 		chrome.runtime.sendMessage({
     		url: this.searchURL,
 		}, function(responseText) {
-			var test = document.createElement('div');
-   			test.innerHTML = responseText;
-   			var x = test.getElementsByClassName('listing PROFESSOR'); //throw exception here if null
-   			popup.innerHTML = x[0].innerText;
+			var tmp = document.createElement('div');
+   			tmp.innerHTML = responseText;
+   			var x = tmp.getElementsByClassName('listing PROFESSOR'); //throw exception here if null
+
+   			popup.innerHTML = x[0].innerHTML;
    			//test.innerHTML = x;
    			//popup.appendChild(test);
 		});
