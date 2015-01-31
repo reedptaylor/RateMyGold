@@ -4,7 +4,6 @@
     -webkit-border-radius:28px;
     border-radius:28px;
     border: none;
-    display:block-inline;
     cursor:pointer;
     color:#336699;
     font-family:Verdana;
@@ -14,6 +13,7 @@
     text-decoration:none;
     box-shadow: 1px 1px 1px grey;
     width: 85px;
+    display:block-inline;
 }
 
 .ratingButton:active {
