@@ -58,23 +58,24 @@ function openPopup() {
    			var foundProfs = tmp.getElementsByClassName('listing PROFESSOR'); 
    			
    			if (foundProfs.length == 0){ //if no results were returned, print this message
-   				popup.innerText = "Professor has no ratings" + "\n\n\n" + "¯\\_(ツ)_/¯";
+   				popup.innerText = "Professor not found" + "\n\n\n" + "¯\\_(ツ)_/¯";
    			}
    			else{
    				//iterate through the search results and match by first letter of first name
-   				for (var i = 0; i < foundProfs.length; i++){
+   				var length = foundProfs.length;
+   				for (var i = 0; i < length; i++){
+   					var tmp = document.createElement('div');
    					tmp.innerHTML = foundProfs[i].innerHTML;
    					var name      = tmp.getElementsByClassName('main')[0].innerText;
-   					//alert(firstName.charAt(0) + name.split(',')[1].charAt(1));
    					if (firstName.charAt(0) == name.split(',')[1].charAt(1)){
-   						//alert('h');
    						break;
    					}
-   					else if (i == foundProfs.length-1) {
-   						popup.innerText = "Professor has no ratings" + "\n\n\n" + "¯\\_(ツ)_/¯";
+   					else if (i == length-1) {
+   						popup.innerText = "Professor not found" + "\n\n\n" + "¯\\_(ツ)_/¯";
    						return 0;
    					}
    				}
+   				
    				//get the link for the actual professor page
    				var link       = tmp.getElementsByTagName('a');
    				this.profURL   = 'http://www.ratemyprofessors.com/' + link[0].toString().slice(23); //this is the URL
