@@ -13,7 +13,11 @@ function main() {
 
 			//check if professor's last name is two words to include in search
 			var nameArray = professors[profCount].split(' ');
-			if (nameArray[1].length > 1){ 
+			if (nameArray.length == 1){ //special case for single name on gold
+				searchName = nameArray[0];
+				div.firstName = ' ';
+			}
+			else if (nameArray[1].length > 1){ 
 				searchName = nameArray[0] + ' ' + nameArray[1] 
 				div.firstName = nameArray[2];
 			}
@@ -63,6 +67,7 @@ function openPopup() {
    			else{
    				//iterate through the search results and match by first letter of first name
    				var length = foundProfs.length;
+
    				for (var i = 0; i < length; i++){
    					var tmp = document.createElement('div');
    					tmp.innerHTML = foundProfs[i].innerHTML;
@@ -75,7 +80,7 @@ function openPopup() {
    						return 0;
    					}
    				}
-   				
+
    				//get the link for the actual professor page
    				var link       = tmp.getElementsByTagName('a');
    				this.profURL   = 'http://www.ratemyprofessors.com/' + link[0].toString().slice(23); //this is the URL
