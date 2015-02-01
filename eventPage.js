@@ -13,11 +13,3 @@ chrome.runtime.onMessage.addListener(function(request, sender, callback) {
    	xhr.send();
    	return true; // prevents the callback from being called too early on return   
 });
-/*
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4) {
-				//var data = xhr.responseText;
-   				//xhr.popup.innerHTML = "test";
-   				alert(xhr.responseXML);
-			}
-		}*/

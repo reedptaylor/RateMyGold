@@ -3,13 +3,13 @@ function main() {
 	var length     = cells.length;
 	var professors = [];
 	var profCount  = 0;
-
-	for (var i = 3; i < length; i += 18) { //iterate through the cells, only those which contain a professor name
-		var profName = cells[i].innerText.slice(0,-1); //slice off &nbsp; character	
+	
+	for (var i = 3; i < length; i += 18) { //iterate through the cells, only those which contain a professor name	
+		var profName = cells[i].innerText.slice(0,-1); //slice off &nbsp; character		
 		if (profName != 'T.B.A.' && profName != 'Cancel'){
 			professors.push(profName.slice(0,-1)); //slice off remaining space at end and push to professor array
 			var div        = cells[i+9]; //cell where the button will go
-			var searchName = ''
+			var searchName = '';
 
 			//check if professor's last name is two words to include in search
 			var nameArray = professors[profCount].split(' ');
@@ -48,11 +48,10 @@ function openPopup() {
 		this.innerHTML  = '<input class="ratingButton" type="button" value="HIDE RATING" />';	
 		var popup       = document.createElement('div');
 		popup.className = 'popup';
-		var firstName = this.firstName;
-
+		popup.innerText = 'Loading...';
+		var firstName   = this.firstName;
 		this.cell.style.position = 'relative';
 		this.cell.appendChild(popup);
-		popup.innerText = 'Loading...'
 
 		chrome.runtime.sendMessage({ //need a separate event page to do the xmlhttprequest because of http to https issue
     		url: this.searchURL,
@@ -64,14 +63,13 @@ function openPopup() {
    			if (foundProfs.length == 0){ //if no results were returned, print this message
    				popup.innerText = "Professor not found" + "\n\n\n" + "¯\\_(ツ)_/¯";
    			}
-   			else{
-   				//iterate through the search results and match by first letter of first name
+   			else{ //iterate through the search results and match by first letter of first name to verify identity
    				var length = foundProfs.length;
-
    				for (var i = 0; i < length; i++){
-   					var tmp = document.createElement('div');
-   					tmp.innerHTML = foundProfs[i].innerHTML;
-   					var name      = tmp.getElementsByClassName('main')[0].innerText;
+   					var tmp          = document.createElement('div');
+   					tmp.innerHTML    = foundProfs[i].innerHTML;
+   					var name         = tmp.getElementsByClassName('main')[0].innerText;
+
    					if (firstName.charAt(0) == name.split(',')[1].charAt(1)){
    						break;
    					}
@@ -79,7 +77,7 @@ function openPopup() {
    						popup.innerText = "Professor not found" + "\n\n\n" + "¯\\_(ツ)_/¯";
    						return 0;
    					}
-   				}
+   				}//end for loop
 
    				//get the link for the actual professor page
    				var link       = tmp.getElementsByTagName('a');
