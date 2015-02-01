@@ -101,19 +101,19 @@ function openPopup() {
 
 					//put rating data in divs
 					profNameDiv.innerText	 = 	proffName + " "    + proflName;
-					overallDiv.innerText     = 'Overall Quality: ' + overall.innerHTML;
-					avgGradeDiv.innerText    = 'Average Grade: '   + avgGrade.innerHTML;
-					hotnessDiv.innerText     = 'Hotness: '         + hotnessFinal;
-					helpfulnessDiv.innerText = 'Helpfulness: '     + helpfulness.innerHTML;
-					clarityDiv.innerText     = 'Clarity: '         + clarity.innerHTML;
-					easinessDiv.innerText    = 'Easiness: '        + easiness.innerHTML;
+					overallDiv.innerText     = 'Overall Quality\n' + overall.innerHTML;
+					avgGradeDiv.innerText    = 'Average Grade\n'   + avgGrade.innerHTML;
+					hotnessDiv.innerText     = 'Hotness\n'         + hotnessFinal;
+					helpfulnessDiv.innerText = 'Helpfulness\n'     + helpfulness.innerHTML;
+					clarityDiv.innerText     = 'Clarity\n'         + clarity.innerHTML;
+					easinessDiv.innerText    = 'Easiness\n'        + easiness.innerHTML;
 
 					//add divs to popup
 					popup.innerHTML = ''; //remove 'loading...' text
 					popup.appendChild(profNameDiv);
    					popup.appendChild(overallDiv);
    					popup.appendChild(avgGradeDiv);
-   					popup.appendChild(hotnessDiv);
+   					/*popup.appendChild(hotnessDiv);*/
    					popup.appendChild(helpfulnessDiv);
    					popup.appendChild(clarityDiv);
    					popup.appendChild(easinessDiv);
