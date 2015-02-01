@@ -1,8 +1,11 @@
 {
 	"manifest_version": 2, 
  	"name": "RateMyGold",
+ 	"version": "1.0",
+ 	"author": "Casey Barbello",
+ 	"author": "Natasha Issayeva",
+ 	"author": "Adrian Arcilla",
  	"description": "Choose your UCSB courses more efficiently with ratings from RateMyProfessors.com.", 
-  	"version": "1.0",
 
   	"icons": { "16": "icon.png", "48": "icon.png", "128": "icon.png" }, 
 
