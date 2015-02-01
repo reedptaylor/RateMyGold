@@ -163,7 +163,7 @@ function openPopup() {
               easinessTextDiv.className    = 'easinessText';
 
               //put rating data in divs
-              profNameDiv.innerHTML        = '<a href="'+ this.profURL + '">'+ proffName + " " + proflName; + '</a>';
+              profNameDiv.innerHTML        = '<a href="'+ this.profURL + '" target="_blank">'+ proffName + " " + proflName; + '</a>';
               overallDiv.innerText         = 'Overall Quality';
               overallTextDiv.innerText     = overall.innerHTML;
 					    avgGradeDiv.innerText        = 'Average Grade';
