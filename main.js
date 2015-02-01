@@ -45,7 +45,7 @@ function openPopup() {
    			var foundProfs = tmp.getElementsByClassName('listing PROFESSOR'); 
    			
    			if (foundProfs.length == 0){ //if no results were returned, print this message
-   				popup.innerText = "Professor has no ratings.";
+   				popup.innerText = "Professor has no ratings" + "\n\n\n" + "¯\\_(ツ)_/¯";
    			}
    			else{
    				tmp.innerHTML  = foundProfs[0].innerHTML;
