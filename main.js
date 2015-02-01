@@ -61,7 +61,19 @@ function openPopup() {
    			var foundProfs = tmp.getElementsByClassName('listing PROFESSOR'); 
    			
    			if (foundProfs.length == 0){ //if no results were returned, print this message
-   				popup.innerText = "Professor not found" + "\n\n\n" + "¯\\_(ツ)_/¯";
+   				var emptyPopup       = popup;
+                emptyPopup.className = 'notFoundPopup';
+                var notFound         = document.createElement('div');
+                var idk              = document.createElement('div');
+                
+                notFound.className   = 'notFound';
+                idk.className        = 'idk';
+                notFound.innerText   = "Professor not found";
+                idk.innerText        = "¯\\_(ツ)_/¯";
+                
+                emptyPopup.innerHTML = '';
+                emptyPopup.appendChild(notFound);
+                emptyPopup.appendChild(idk);
    			}
    			else{ //iterate through the search results and match by first letter of first name to verify identity
    				var length = foundProfs.length;
@@ -74,7 +86,19 @@ function openPopup() {
    						break;
    					}
    					else if (i == length-1) {
-   						popup.innerText = "Professor not found" + "\n\n\n" + "¯\\_(ツ)_/¯";
+   						var emptyPopup       = popup;
+                		emptyPopup.className = 'notFoundPopup';
+                		var notFound         = document.createElement('div');
+                		var idk              = document.createElement('div');
+                
+               			notFound.className   = 'notFound';
+                		idk.className        = 'idk';
+                		notFound.innerText   = "Professor not found";
+                		idk.innerText        = "¯\\_(ツ)_/¯";
+                
+		                emptyPopup.innerHTML = '';
+        		        emptyPopup.appendChild(notFound);
+                		emptyPopup.appendChild(idk);
    						return 0;
    					}
    				}//end for loop
@@ -98,12 +122,12 @@ function openPopup() {
    					var otherRatings  = tmp.getElementsByClassName('rating');
 
    					//handle hotness
-					var hotness       		= overallAndAvg[2];
-   					var isCold		  		= /cold/.test(hotness.innerHTML);
-   					var isWarm		 		= /warm/.test(hotness.innerHTML); 
-   					var hotnessFinal  		= " - ";
-   					if(isCold || isWarm) 	{hotnessFinal = "Not hot";}
-   					else 		    		{hotnessFinal = "Hot";}
+					// var hotness       		= overallAndAvg[2];
+   					// var isCold		  		= /cold/.test(hotness.innerHTML);
+   					// var isWarm		 		= /warm/.test(hotness.innerHTML); 
+   					// var hotnessFinal  		= " - ";
+   					// if(isCold || isWarm) 	{hotnessFinal = "Not hot";}
+   					// else 		    		{hotnessFinal = "Hot";}
 
    					var overall       = overallAndAvg[0];
    					var avgGrade      = overallAndAvg[1];
@@ -113,41 +137,72 @@ function openPopup() {
    					tmp.remove();
  
    					//create the ratings divs
-   					var profNameDiv	   = document.createElement('div');
-   					var overallDiv     = document.createElement('div');
-					var avgGradeDiv    = document.createElement('div');
-					var hotnessDiv	   = document.createElement('div');
-					var helpfulnessDiv = document.createElement('div');
-					var clarityDiv     = document.createElement('div');
-					var easinessDiv    = document.createElement('div');
+   					var profNameDiv        = document.createElement('div');
 
-					//assign class names for styling
-					profNameDiv.className 	 = 'profName';
-					overallDiv.className     = 'overall';
-					avgGradeDiv.className    = 'avgGrade';
-					hotnessDiv.className     = 'hotness';
-					helpfulnessDiv.className = 'helpfulness';
-					clarityDiv.className     = 'clarity';
-					easinessDiv.className    = 'easiness';
+                    var overallDiv         = document.createElement('div');
+                    var overallTextDiv     = document.createElement('div');
 
-					//put rating data in divs
-					profNameDiv.innerText	 = 	proffName + " "    + proflName;
-					overallDiv.innerText     = 'Overall Quality\n' + overall.innerHTML;
-					avgGradeDiv.innerText    = 'Average Grade\n'   + avgGrade.innerHTML;
-					hotnessDiv.innerText     = 'Hotness\n'         + hotnessFinal;
-					helpfulnessDiv.innerText = 'Helpfulness\n'     + helpfulness.innerHTML;
-					clarityDiv.innerText     = 'Clarity\n'         + clarity.innerHTML;
-					easinessDiv.innerText    = 'Easiness\n'        + easiness.innerHTML;
+                    var avgGradeDiv        = document.createElement('div');
+                    var avgGradeTextDiv    = document.createElement('div');
+
+                    var helpfulnessDiv     = document.createElement('div');
+                    var helpfulnessTextDiv = document.createElement('div');
+
+                    var clarityDiv         = document.createElement('div');
+                    var clarityTextDiv     = document.createElement('div');
+
+                    var easinessDiv        = document.createElement('div');
+                    var easinessTextDiv    = document.createElement('div');
+
+                    //assign class names for styling
+                    profNameDiv.className        = 'profName';
+
+                    overallDiv.className         = 'overall';
+                    overallTextDiv.className     = 'overallText';
+
+                    avgGradeDiv.className        = 'avgGrade';
+                    avgGradeTextDiv.className    = 'avgGradeText';
+
+                    helpfulnessDiv.className     = 'helpfulness';
+                    helpfulnessTextDiv.className = 'helpfulnessText';
+
+                    clarityDiv.className         = 'clarity';
+                    clarityTextDiv.className     = 'clarityText';
+
+                    easinessDiv.className        = 'easiness';
+                    easinessTextDiv.className    = 'easinessText';
+
+                    //put rating data in divs
+                    profNameDiv.innerHTML        = '<a href="'+ this.profURL + '">'+ proffName + " " + proflName; + '</a>';
+
+                    overallDiv.innerText         = 'Overall Quality';
+                    overallTextDiv.innerText     = overall.innerHTML;
+
+					avgGradeDiv.innerText        = 'Average Grade';
+					avgGradeTextDiv.innerText    = avgGrade.innerHTML;
+
+					helpfulnessDiv.innerText     = 'Helpfulness';
+					helpfulnessTextDiv.innerText = helpfulness.innerHTML;
+
+					clarityDiv.innerText         = 'Clarity';
+					clarityTextDiv.innerText     = clarity.innerHTML;
+
+					easinessDiv.innerText        = 'Easiness';
+					easinessTextDiv.innerText    = easiness.innerHTML;
 
 					//add divs to popup
 					popup.innerHTML = ''; //remove 'loading...' text
 					popup.appendChild(profNameDiv);
    					popup.appendChild(overallDiv);
+   					popup.appendChild(overallTextDiv);
    					popup.appendChild(avgGradeDiv);
-   					/*popup.appendChild(hotnessDiv);*/
+   					popup.appendChild(avgGradeTextDiv);
    					popup.appendChild(helpfulnessDiv);
+   					popup.appendChild(helpfulnessTextDiv);
    					popup.appendChild(clarityDiv);
+   					popup.appendChild(clarityTextDiv);
    					popup.appendChild(easinessDiv);
+   					popup.appendChild(easinessTextDiv);
 
 				});//end message
 			}//end else

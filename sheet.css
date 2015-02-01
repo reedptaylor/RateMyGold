@@ -35,6 +35,19 @@
     z-index: 100000000000000000;
 }
 
+.notFoundPopup {
+    position: absolute;
+    top: -141px;
+    left: 253px;
+    margin: 100px auto;
+    width: 210px;
+    height: 50px;
+    /*padding: 10px;*/
+    background-color: #FFFFFF;
+    border: 2px solid #D6D6D6;
+    z-index: 100000000000000000;
+}
+
 .profName {
     display: block;
     background-color: #CEDEFA;
@@ -50,64 +63,163 @@
     padding: 1px 0px 6px 0px;
 }
 
+.profName a:hover {
+    color: blue;
+}
+
 .overall {
     display: block;
     font-family: verdana;
-    font-size: 11px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #003366;
     position: absolute;
     width: 105px;
-    height: 45px;
+    height: 20px;
     top: 25px;
     text-align: center;
+}
+
+.overallText {
+    display: block;
+    font-family: verdana;
+    font-size: 10px;
+    position: absolute;
+    width: 105px;
+    height: 25px;
+    top: 40px;
+    text-align: center;
+
 }
 
 .avgGrade {
     display: block;
     font-family: verdana;
-    font-size: 11px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #003366;
     position: absolute;
     width: 105px;
-    height: 45px;
+    height: 20px;
     top: 25px;
     left: 105px; 
     text-align: center;
 }
 
-.hotness {
-
+.avgGradeText {
+    display: block;
+    font-family: verdana;
+    font-size: 10px;
+    position: absolute;
+    width: 105px;
+    height: 25px;
+    top: 40px;
+    left: 105px; 
+    text-align: center;
 }
 
 .helpfulness {
     display: block;
     font-family: verdana;
-    font-size: 11px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #003366;
     position: absolute;
     width: 70px;
-    height: 45px;
+    height: 20px;
     top: 60px;
+    left: 3px;
+    text-align: center;
+}
+
+.helpfulnessText {
+    display: block;
+    font-family: verdana;
+    font-size: 10px;
+    position: absolute;
+    width: 70px;
+    height: 25px;
+    top: 75px;
+    left: 3px;
     text-align: center;
 }
 
 .clarity {
     display: block;
     font-family: verdana;
-    font-size: 11px;   
+    font-size: 10px;
+    font-weight: 600;
+    color: #003366;   
     position: absolute;
     width: 70px;
-    height: 45px;
+    height: 20px;
     top: 60px;
-    left: 70px;
+    left: 73px;
     text-align: center;
+}
+
+.clarityText {
+    display: block;
+    font-family: verdana;
+    font-size: 10px;
+    position: absolute;
+    width: 70px;
+    height: 25px;
+    top: 75px;
+    left: 73px;
+    text-align: center;
+
 }
 
 .easiness {
     display: block;
     font-family: verdana;
-    font-size: 11px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #003366;
     position: absolute;
     width: 70px;
-    height: 45px;
+    height: 20px;
     top: 60px;
-    left: 140px;
+    left: 143px;
     text-align: center;
 }
+
+.easinessText {
+    display: block;
+    font-family: verdana;
+    font-size: 10px;
+    position: absolute;
+    width: 70px;
+    height: 25px;
+    top: 75px;
+    left: 143px;
+    text-align: center;
+
+}
+
+.notFound {
+    display: block;
+    background-color: #CEDEFA;
+    font-family: verdana;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #003366;
+    position: absolute;
+    width: 210px;
+    height: 10px;
+    text-align: center;
+    padding: 1px 0px 6px 0px;
+}
+
+.idk {
+    display: block;
+    font-family: verdana;
+    font-size: 11px;
+    position: absolute;
+    width: 210px;
+    height: 25px;
+    top: 25px;
+    text-align: center;
+} 
