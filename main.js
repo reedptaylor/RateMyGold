@@ -9,7 +9,19 @@ function main() {
 		if (profName != 'T.B.A.' && profName != 'Cancel'){
 			professors.push(profName.slice(0,-1)); //slice off remaining space at end and push to professor array
 			var div        = cells[i+9]; //cell where the button will go
-			var searchName = professors[profCount].split(' ')[0]; //slice off all characters except last name
+			var searchName = ''
+
+			//check if professor's last name is two words to include in search
+			var nameArray = professors[profCount].split(' ');
+			if (nameArray[1].length > 1){ 
+				searchName = nameArray[0] + ' ' + nameArray[1] 
+				div.firstName = nameArray[2];
+			}
+			else{ 
+				searchName = nameArray[0]; 
+				div.firstName = nameArray[1];
+			}
+
 			div.searchURL  = 'http://www.ratemyprofessors.com/search.jsp?queryBy=teacherName&schoolName=university+of+california+santa+barbara&queryoption=HEADER&query='+ searchName +'&facetSearch=true';
 			div.profURL    = '';
 			div.innerHTML  = '<input class="ratingButton" type="button" value="SHOW RATING" />';
@@ -32,6 +44,7 @@ function openPopup() {
 		this.innerHTML  = '<input class="ratingButton" type="button" value="HIDE RATING" />';	
 		var popup       = document.createElement('div');
 		popup.className = 'popup';
+		var firstName = this.firstName;
 
 		this.cell.style.position = 'relative';
 		this.cell.appendChild(popup);
@@ -48,7 +61,21 @@ function openPopup() {
    				popup.innerText = "Professor has no ratings" + "\n\n\n" + "¯\\_(ツ)_/¯";
    			}
    			else{
-   				tmp.innerHTML  = foundProfs[0].innerHTML;
+   				//iterate through the search results and match by first letter of first name
+   				for (var i = 0; i < foundProfs.length; i++){
+   					tmp.innerHTML = foundProfs[i].innerHTML;
+   					var name      = tmp.getElementsByClassName('main')[0].innerText;
+   					//alert(firstName.charAt(0) + name.split(',')[1].charAt(1));
+   					if (firstName.charAt(0) == name.split(',')[1].charAt(1)){
+   						//alert('h');
+   						break;
+   					}
+   					else if (i == foundProfs.length-1) {
+   						popup.innerText = "Professor has no ratings" + "\n\n\n" + "¯\\_(ツ)_/¯";
+   						return 0;
+   					}
+   				}
+   				//get the link for the actual professor page
    				var link       = tmp.getElementsByTagName('a');
    				this.profURL   = 'http://www.ratemyprofessors.com/' + link[0].toString().slice(23); //this is the URL
 
