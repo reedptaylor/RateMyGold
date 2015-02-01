@@ -3,6 +3,7 @@
 /* Jan.31.2015                                                                             */
 
 function main() {
+
 	var cells      = document.getElementsByClassName('clcellprimary');
 	var length     = cells.length;
 	var professors = [];
