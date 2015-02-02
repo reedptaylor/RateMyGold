@@ -69,7 +69,7 @@ function openPopup() {
           emptyPopup.className = 'notFoundPopup';
           var notFound         = document.createElement('div');
           var idk              = document.createElement('div');  
-          notFound.className   = 'notFound';
+          notFound.className   = 'heading';
           idk.className        = 'idk';
           notFound.innerText   = "Professor not found";
           idk.innerText        = "¯\\_(ツ)_/¯";   
@@ -90,7 +90,7 @@ function openPopup() {
               emptyPopup.className = 'notFoundPopup';
               var notFound         = document.createElement('div');
               var idk              = document.createElement('div');  
-              notFound.className   = 'notFound';
+              notFound.className   = 'heading';
               idk.className        = 'idk';
               notFound.innerText   = "Professor not found";
               idk.innerText        = "¯\\_(ツ)_/¯";
@@ -137,57 +137,74 @@ function openPopup() {
    					  tmp.remove();
  
    					  //create the ratings divs
-   					  var profNameDiv        = document.createElement('div');
-              var overallDiv         = document.createElement('div');
-              var overallTextDiv     = document.createElement('div');
-              var avgGradeDiv        = document.createElement('div');
-              var avgGradeTextDiv    = document.createElement('div');
-              var helpfulnessDiv     = document.createElement('div');
-              var helpfulnessTextDiv = document.createElement('div');
-              var clarityDiv         = document.createElement('div');
-              var clarityTextDiv     = document.createElement('div');
-              var easinessDiv        = document.createElement('div');
-              var easinessTextDiv    = document.createElement('div');
+   					  var profNameDiv         = document.createElement('div');
+              var overallDiv          = document.createElement('div');
+              var overallTitleDiv     = document.createElement('div');
+              var overallTextDiv      = document.createElement('div');
+              var avgGradeDiv         = document.createElement('div');
+              var avgGradeTitleDiv    = document.createElement('div');
+              var avgGradeTextDiv     = document.createElement('div');
+              var helpfulnessDiv      = document.createElement('div');
+              var helpfulnessTitleDiv = document.createElement('div');
+              var helpfulnessTextDiv  = document.createElement('div');
+              var clarityDiv          = document.createElement('div');
+              var clarityTitleDiv     = document.createElement('div');
+              var clarityTextDiv      = document.createElement('div');
+              var easinessDiv         = document.createElement('div');
+              var easinessTitleDiv    = document.createElement('div');
+              var easinessTextDiv     = document.createElement('div');
 
               //assign class names for styling
-              profNameDiv.className        = 'profName';
-              overallDiv.className         = 'overall';
-              overallTextDiv.className     = 'overallText';
-              avgGradeDiv.className        = 'avgGrade';
-              avgGradeTextDiv.className    = 'avgGradeText';
-              helpfulnessDiv.className     = 'helpfulness';
-              helpfulnessTextDiv.className = 'helpfulnessText';
-              clarityDiv.className         = 'clarity';
-              clarityTextDiv.className     = 'clarityText';
-              easinessDiv.className        = 'easiness';
-              easinessTextDiv.className    = 'easinessText';
+              profNameDiv.className         = 'heading';
+              overallDiv.className          = 'overall';
+              overallTitleDiv.className     = 'title';
+              overallTextDiv.className      = 'text';
+              avgGradeDiv.className         = 'avgGrade';
+              avgGradeTitleDiv.className    = 'title';
+              avgGradeTextDiv.className     = 'text';
+              helpfulnessDiv.className      = 'helpfulness';
+              helpfulnessTitleDiv.className = 'title';
+              helpfulnessTextDiv.className  = 'text';
+              clarityDiv.className          = 'clarity';
+              clarityTitleDiv.className     = 'title';
+              clarityTextDiv.className      = 'text';
+              easinessDiv.className         = 'easiness';
+              easinessTitleDiv.className    = 'title';
+              easinessTextDiv.className     = 'text';
 
               //put rating data in divs
-              profNameDiv.innerHTML        = '<a href="'+ this.profURL + '" target="_blank">'+ proffName + " " + proflName; + '</a>';
-              overallDiv.innerText         = 'Overall Quality';
-              overallTextDiv.innerText     = overall.innerHTML;
-					    avgGradeDiv.innerText        = 'Average Grade';
-					    avgGradeTextDiv.innerText    = avgGrade.innerHTML;
-					    helpfulnessDiv.innerText     = 'Helpfulness';
-					    helpfulnessTextDiv.innerText = helpfulness.innerHTML;
-					    clarityDiv.innerText         = 'Clarity';
-					    clarityTextDiv.innerText     = clarity.innerHTML;
-					    easinessDiv.innerText        = 'Easiness';
-					    easinessTextDiv.innerText    = easiness.innerHTML;
+              profNameDiv.innerHTML         = '<a href="'+ this.profURL + '" target="_blank">'+ proffName + " " + proflName; + '</a>';
+              overallTitleDiv.innerText     = 'Overall Quality';
+              overallTextDiv.innerText      = overall.innerHTML;
+					    avgGradeTitleDiv.innerText    = 'Average Grade';
+					    avgGradeTextDiv.innerText     = avgGrade.innerHTML;
+					    helpfulnessTitleDiv.innerText = 'Helpfulness';
+					    helpfulnessTextDiv.innerText  = helpfulness.innerHTML;
+					    clarityTitleDiv.innerText     = 'Clarity';
+					    clarityTextDiv.innerText      = clarity.innerHTML;
+					    easinessTitleDiv.innerText    = 'Easiness';
+					    easinessTextDiv.innerText     = easiness.innerHTML;
 
 					    //add divs to popup
 					    popup.innerHTML = ''; //remove 'loading...' text
+
+              overallTitleDiv.appendChild(overallTextDiv);
+              overallDiv.appendChild(overallTitleDiv);          
+              avgGradeTitleDiv.appendChild(avgGradeTextDiv);
+              avgGradeDiv.appendChild(avgGradeTitleDiv);
+              helpfulnessTitleDiv.appendChild(helpfulnessTextDiv);
+              helpfulnessDiv.appendChild(helpfulnessTitleDiv);
+              clarityTitleDiv.appendChild(clarityTextDiv);
+              clarityDiv.appendChild(clarityTitleDiv);
+              easinessTitleDiv.appendChild(easinessTextDiv);
+              easinessDiv.appendChild(easinessTitleDiv);
+
 					    popup.appendChild(profNameDiv);
    					  popup.appendChild(overallDiv);
-   					  popup.appendChild(overallTextDiv);
    					  popup.appendChild(avgGradeDiv);
-   					  popup.appendChild(avgGradeTextDiv);
    					  popup.appendChild(helpfulnessDiv);
-   					  popup.appendChild(helpfulnessTextDiv);
    					  popup.appendChild(clarityDiv);
-   					  popup.appendChild(clarityTextDiv);
    					  popup.appendChild(easinessDiv);
-   					  popup.appendChild(easinessTextDiv);
 
 				}); //end message
 			}    //end else

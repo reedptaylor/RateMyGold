@@ -29,7 +29,6 @@
     margin: 100px auto;
     width: 210px;
     height: 100px;
-    /*padding: 10px;*/
     background-color: #FFFFFF;
     border: 2px solid #D6D6D6;
     z-index: 100000000000000000;
@@ -42,13 +41,12 @@
     margin: 100px auto;
     width: 210px;
     height: 50px;
-    /*padding: 10px;*/
     background-color: #FFFFFF;
     border: 2px solid #D6D6D6;
     z-index: 100000000000000000;
 }
 
-.profName {
+.heading {
     display: block;
     background-color: #CEDEFA;
     font-family: verdana;
@@ -60,158 +58,73 @@
     width: 210px;
     height: 10px;
     text-align: center;
-    padding: 1px 0px 6px 0px;
-    text-decoration: underline;
+    padding: 1px 0px 6px 0px; 
 }
 
-.profName a:hover {
+.heading a:hover {
     color: blue;
+}
+
+.title {
+    display: block;
+    font-family: verdana;
+    font-size: 10px;
+    font-weight: 600;
+    color: #003366;
+    position: relative;
+    text-align: center;
+}
+
+.text {
+    font-family: verdana;
+    font-size: 10px;
+    position: relative;
+    text-align: center; 
 }
 
 .overall {
     display: block;
-    font-family: verdana;
-    font-size: 10px;
-    font-weight: 600;
-    color: #003366;
     position: absolute;
     width: 105px;
     height: 20px;
-    top: 25px;
-    text-align: center;
-}
-
-.overallText {
-    display: block;
-    font-family: verdana;
-    font-size: 10px;
-    position: absolute;
-    width: 105px;
-    height: 25px;
-    top: 40px;
-    text-align: center;
-
+    top: 22px;
+    left: 5px;
 }
 
 .avgGrade {
     display: block;
-    font-family: verdana;
-    font-size: 10px;
-    font-weight: 600;
-    color: #003366;
     position: absolute;
     width: 105px;
     height: 20px;
-    top: 25px;
-    left: 105px; 
-    text-align: center;
-}
-
-.avgGradeText {
-    display: block;
-    font-family: verdana;
-    font-size: 10px;
-    position: absolute;
-    width: 105px;
-    height: 25px;
-    top: 40px;
-    left: 105px; 
-    text-align: center;
+    top: 22px;
+    left: 110px; 
 }
 
 .helpfulness {
     display: block;
-    font-family: verdana;
-    font-size: 10px;
-    font-weight: 600;
-    color: #003366;
     position: absolute;
     width: 70px;
     height: 20px;
     top: 60px;
-    left: 3px;
-    text-align: center;
-}
-
-.helpfulnessText {
-    display: block;
-    font-family: verdana;
-    font-size: 10px;
-    position: absolute;
-    width: 70px;
-    height: 25px;
-    top: 75px;
-    left: 3px;
-    text-align: center;
+    left: 4px;
 }
 
 .clarity {
     display: block;
-    font-family: verdana;
-    font-size: 10px;
-    font-weight: 600;
-    color: #003366;   
     position: absolute;
     width: 70px;
     height: 20px;
     top: 60px;
-    left: 73px;
-    text-align: center;
-}
-
-.clarityText {
-    display: block;
-    font-family: verdana;
-    font-size: 10px;
-    position: absolute;
-    width: 70px;
-    height: 25px;
-    top: 75px;
-    left: 73px;
-    text-align: center;
-
+    left: 85px;
 }
 
 .easiness {
     display: block;
-    font-family: verdana;
-    font-size: 10px;
-    font-weight: 600;
-    color: #003366;
     position: absolute;
     width: 70px;
     height: 20px;
     top: 60px;
     left: 143px;
-    text-align: center;
-}
-
-.easinessText {
-    display: block;
-    font-family: verdana;
-    font-size: 10px;
-    position: absolute;
-    width: 70px;
-    height: 25px;
-    top: 75px;
-    left: 143px;
-    text-align: center;
-
-}
-
-.notFound {
-    display: block;
-    background-color: #CEDEFA;
-    font-family: verdana;
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: #003366;
-    position: absolute;
-    width: 210px;
-    height: 10px;
-    text-align: center;
-    padding: 1px 0px 6px 0px;
 }
 
 .idk {
