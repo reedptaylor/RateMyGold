@@ -8,23 +8,29 @@
 <title>global HTML page</title>
 <script type="text/javascript">
 
- safari.application.addEventListener("message", function(request, sender, callback) { 
 
+function executeRequest(messageEvent) {
+	
+	var messageData = messageEvent.message;
+	var url = messageData[0];
+
+	var parseAction = messageData[1]; // "parseSearchResponseHTML" OR "parseProfessorResponseHTML"
 
 	var xhr = new XMLHttpRequest();
 
 	xhr.onload = function() {
-    	callback(xhr.responseText);
+		safari.application.activeBrowserWindow.activeTab.page.dispatchMessage(parseAction, xhr.responseText); 
     };
 	xhr.onerror = function() {
-		callback();
+		safari.application.activeBrowserWindow.activeTab.page.dispatchMessage(parseAction); 
  	};
  	
-  	xhr.open('GET', request.url, true);
+  	xhr.open('GET', url, true);
    	xhr.send();
    	return true; // prevents the callback from being called too early on return   
-} ,false);
+}
 
+safari.application.addEventListener("message", executeRequest, false);
 
 
 
