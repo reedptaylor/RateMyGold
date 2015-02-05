@@ -1,43 +1,44 @@
 
-function main() {
-    
-    var cells      = document.getElementsByClassName('clcellprimary');
-    var length     = cells.length;
-    var professors = [];
-    var profCount  = 0;
-    
-    for (var i = 3; i < length; i += 18) {                   //only iterate through cells which contain a professor name	
-		var profName = cells[i].innerText.slice(0,-1);         //slice '&nbsp;'' character		
-		if (profName != 'T.B.A.' && profName != 'Cancel'){
-		    professors.push(profName.slice(0,-1));               //slice remaining space at end & push to professor array
-		    var div         = cells[i+9];                        //cell where the button will go
-		    var searchName  = '';
-		    var nameArray   = professors[profCount].split(' ');  //check if professor's last name is two words to include in search
-		    if (nameArray.length == 1){                          //special case for single name on gold
-				searchName    = nameArray[0];
-				div.firstName = ' ';
-		    } else if (nameArray[1].length > 1){ 
-				searchName    = nameArray[0] + ' ' + nameArray[1]; 
-				div.firstName = nameArray[2];
-		    } else { 
-				searchName    = nameArray[0]; 
-				div.firstName = nameArray[1];
-		    }
-		    
-		    div.searchURL = 'http://www.ratemyprofessors.com/search.jsp?queryBy=teacherName&schoolName=university+of+california+santa+barbara&queryoption=HEADER&query='
-	                + searchName + '&facetSearch=true';
-		    div.profURL   = '';
-		    div.innerHTML = '<input class="ratingButton" type="button" value="SHOW RATING" />';
-		    div.cell      = cells[i+10];                          //cell where the popup's html will be placed
-		    div.clicked   = false;
-		    div.addEventListener('click', openPopup);
-		    profCount++;
-		} //end if
-    }  //end for
-}   //end main()
 
 
 
+
+var cells      = document.getElementsByClassName("clcellprimary");
+var length     = cells.length;
+var professors = [];
+var profCount  = 0;
+
+
+
+for (var i = 3; i < length; i += 18) {                   //only iterate through cells which contain a professor name	
+	var profName = cells[i].innerText.slice(0,-1);        //slice '&nbsp;'' character		
+	console.log(i);
+	if (profName != 'T.B.A.' && profName != 'Cancel'){
+	    professors.push(profName.slice(0,-1));               //slice remaining space at end & push to professor array
+	    var div         = cells[i+9];                        //cell where the button will go
+	    var searchName  = '';
+	    var nameArray   = professors[profCount].split(' ');  //check if professor's last name is two words to include in search
+	    if (nameArray.length == 1){                          //special case for single name on gold
+			searchName    = nameArray[0];
+			div.firstName = ' ';
+	    } else if (nameArray[1].length > 1){ 
+			searchName    = nameArray[0] + ' ' + nameArray[1]; 
+			div.firstName = nameArray[2];
+	    } else { 
+			searchName    = nameArray[0];
+			div.firstName = nameArray[1];
+	    }
+	    
+	    div.searchURL = 'http://www.ratemyprofessors.com/search.jsp?queryBy=teacherName&schoolName=university+of+california+santa+barbara&queryoption=HEADER&query='
+                + searchName + '&facetSearch=true';
+	    div.profURL   = '';
+	    div.innerHTML = '<input class="ratingButton" type="button" value="SHOW RATING" />';
+	    div.cell      = cells[i+10];                          //cell where the popup's html will be placed
+	    div.clicked   = false;
+	    div.addEventListener('click', openPopup);
+	    profCount++;
+	} //end if
+}  //end for
 
 function openPopup() {
     if (this.clicked == true) {                              //happens when button was clicked while active
@@ -45,6 +46,7 @@ function openPopup() {
 		this.innerHTML      = '<input class="ratingButton" type="button" value="SHOW RATING" />';
 		this.clicked        = false;
     } else {                                                  //happens when button was clicked while inactive
+
 		this.clicked    = true;
 		this.innerHTML  = '<input class="ratingButton" type="button" value="HIDE RATING" />';	
 		var popup       = document.createElement('div');
@@ -53,10 +55,11 @@ function openPopup() {
 		var firstName   = this.firstName;
 		this.cell.style.position = 'relative';
 		this.cell.appendChild(popup);
-	
-		safari.application.activeBrowserWindow.activeTab.page.dispatchMessage("message", { //need a separate event page to do the xmlhttprequest because of http to https issue
+		
+		safari.self.tab.dispatchMessage("message", { //need a separate event page to do the xmlhttprequest because of http to https issue
 	    	url: this.searchURL,
 		}, function(responseText) {
+			alert("response");
 		    var tmp          = document.createElement('div');  //make a temp element so that we can search through its html
 		    tmp.innerHTML  = responseText;
 		    var foundProfs = tmp.getElementsByClassName('listing PROFESSOR'); 
@@ -101,7 +104,7 @@ function openPopup() {
 		   	    var link     = tmp.getElementsByTagName('a');
 		   	    this.profURL = 'http://www.ratemyprofessors.com/' + link[0].toString().slice(23); //this is the URL
 
-	   			safari.application.activeBrowserWindow.activeTab.page.dispatchMessage("message", { //make another xmlhttprequest using the actual professor link
+	   			safari.self.tab.dispatchMessage("message", { //make another xmlhttprequest using the actual professor link
 	    			url: this.profURL,
 				}, function(responseText) {
 				    tmp = document.createElement('div');
@@ -209,5 +212,6 @@ function openPopup() {
 		}); //end message
 	} //end else
 } //end openPopup()
-									      
-main();
+
+
+
