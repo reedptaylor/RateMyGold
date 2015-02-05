@@ -52,10 +52,10 @@
 			<key>Include Secure Pages</key>
 			<true/>
 			<key>Level</key>
-			<string>Some</string>
+			<string>All</string>
 		</dict>
 	</dict>
 	<key>Website</key>
-	<string>http://www.connormulcahey.com</string>
+	<string>http://cs.ucsb.edu/~connor00/ratemygold.html</string>
 </dict>
 </plist>
