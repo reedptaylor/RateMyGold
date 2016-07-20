@@ -27,8 +27,8 @@
     top: -141px;
     left: 253px;
     margin: 100px auto;
-    width: 210px;
-    height: 100px;
+    width: 190px;
+    height: 145px;
     background-color: #FFFFFF;
     border: 2px solid #D6D6D6;
     z-index: 100000000000000000;
@@ -39,7 +39,7 @@
     top: -141px;
     left: 253px;
     margin: 100px auto;
-    width: 210px;
+    width: 190px;
     height: 50px;
     background-color: #FFFFFF;
     border: 2px solid #D6D6D6;
@@ -55,7 +55,7 @@
     text-transform: uppercase;
     color: #003366;
     position: absolute;
-    width: 210px;
+    width: 190px;
     height: 10px;
     text-align: center;
     padding: 1px 0px 6px 0px; 
@@ -66,20 +66,21 @@
 }
 
 .title {
-    display: block;
     font-family: verdana;
     font-size: 10px;
-    font-weight: 600;
+    /*font-weight: 600;*/
     color: #003366;
     position: relative;
     text-align: center;
+    
 }
 
 .text {
     font-family: verdana;
     font-size: 10px;
     position: relative;
-    text-align: center; 
+    text-align: center;
+
 }
 
 .overall {
@@ -87,44 +88,56 @@
     position: absolute;
     width: 105px;
     height: 20px;
-    top: 22px;
-    left: 5px;
+    top: 30px;
+    left: 2px;
 }
 
-.avgGrade {
+.difficulty {
     display: block;
     position: absolute;
     width: 105px;
     height: 20px;
-    top: 22px;
-    left: 110px; 
+    top: 30px;
+    left: 95px; 
 }
 
-.helpfulness {
+.takeagain {
     display: block;
     position: absolute;
-    width: 70px;
+    width: 100px;
     height: 20px;
     top: 60px;
-    left: 4px;
+    left: 45px;
 }
 
-.clarity {
+.topcoms {
     display: block;
+    text-align: center;
     position: absolute;
-    width: 70px;
-    height: 20px;
-    top: 60px;
-    left: 85px;
+    height: 100px;
+    top: 87px;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%)
+    
 }
 
-.easiness {
-    display: block;
+.numRatings {
+    /*display: block;*/
+    width: 190px;
+    height: 5px;
     position: absolute;
-    width: 70px;
-    height: 20px;
-    top: 60px;
-    left: 143px;
+    font-family: verdana;
+    font-size: 10px;
+    color: #003366;
+    text-align: center;
+    text-transform: lowercase;
+    text-decoration: underline;
+    top: 20px;
+}
+
+.numRatings a:hover {
+    color: blue;
 }
 
 .idk {
@@ -132,7 +145,7 @@
     font-family: verdana;
     font-size: 11px;
     position: absolute;
-    width: 210px;
+    width: 190px;
     height: 25px;
     top: 25px;
     text-align: center;

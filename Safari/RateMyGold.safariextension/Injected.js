@@ -76,7 +76,7 @@ function parseSearchResponseHTML(messageEvent) {
 	    tmp.innerHTML  = responseText;
 	    var foundProfs = tmp.getElementsByClassName('listing PROFESSOR'); 
 	    
-	    if (foundProfs.length == 0){                     //if no results were returned, print this message
+	    if (foundProfs.length == 0){             //if no results were returned, print this message
 			var emptyPopup = popup;
 			emptyPopup.className = 'notFoundPopup';
 			var notFound         = document.createElement('div');
@@ -124,6 +124,7 @@ function parseSearchResponseHTML(messageEvent) {
 //Called as the callback of the request to get the professor's page
 function parseProfessorResponseHTML(messageEvent) {
 
+
 	if (messageEvent.name == "parseProfessorResponseHTML") {
 
 		var responseText = messageEvent.message;
@@ -131,92 +132,120 @@ function parseProfessorResponseHTML(messageEvent) {
 
 		var tmp = document.createElement('div');
 	    tmp.innerHTML = responseText;
+	    
+	  var tmp2 = document.createElement('span');
+	    tmp2.innerHTML = responseText;
+	    
+	    if (tmp.getElementsByClassName('pfname').length == 0) { // check to see if there are ay reviews
+    	  var emptyPopup = popup;
+        emptyPopup.className = 'notFoundPopup';
+        var notFound = document.createElement('div');
+        var idk = document.createElement('div');
+        notFound.className = 'heading';
+        idk.className = 'idk';
+        notFound.innerText = "Professor not found";
+        idk.innerText = "¯\\_(ツ)_/¯";
+        emptyPopup.innerHTML = '';
+        emptyPopup.appendChild(notFound);
+        emptyPopup.appendChild(idk);
+    	  return;
+    }
 	   
 	    var proffName = tmp.getElementsByClassName('pfname')[0].innerText;
 	    var proflName = tmp.getElementsByClassName('plname')[0].innerText;
 	    var ratingInfo = tmp.getElementsByClassName('left-breakdown')[0];
+	    var numRatings = tmp.getElementsByClassName('table-toggle rating-count active')[0].innerText;
 	    tmp.innerHTML = ratingInfo.innerHTML;
 
 	    //get the raw rating data
 	    var overallAndAvg = tmp.getElementsByClassName('grade');
-	    var otherRatings  = tmp.getElementsByClassName('rating');
-
+	    var otherRatings = tmp2.getElementsByClassName('tag-box-choosetags');
+	    var scale = " / 5.0";
+	    
 	    var overall       = overallAndAvg[0];
-	    var avgGrade      = overallAndAvg[1];	
-	    var helpfulness   = otherRatings[0];
-	    var clarity       = otherRatings[1];
-	    var easiness      = otherRatings[2];
+	    var takeAgain      = overallAndAvg[1];
+	    var levelOfDif      = overallAndAvg[2];
+	    //add top 3 comments
+	    var topComs = [otherRatings[0], otherRatings[1], otherRatings[2]];
 	    tmp.remove();
+	    tmp2.remove();
 
 	    //create the ratings divs
-	    var profNameDiv         = document.createElement('div');
+	  var profNameDiv         = document.createElement('div');
 		var overallDiv          = document.createElement('div');
 		var overallTitleDiv     = document.createElement('div');
 		var overallTextDiv      = document.createElement('div');
-		var avgGradeDiv         = document.createElement('div');
-		var avgGradeTitleDiv    = document.createElement('div');
-		var avgGradeTextDiv     = document.createElement('div');
-		var helpfulnessDiv      = document.createElement('div');
-		var helpfulnessTitleDiv = document.createElement('div');
-		var helpfulnessTextDiv  = document.createElement('div');
-		var clarityDiv          = document.createElement('div');
-		var clarityTitleDiv     = document.createElement('div');
-		var clarityTextDiv      = document.createElement('div');
-		var easinessDiv         = document.createElement('div');
-		var easinessTitleDiv    = document.createElement('div');
-		var easinessTextDiv     = document.createElement('div');
+		var takeAgainDiv         = document.createElement('div');
+		var takeAgainTitleDiv    = document.createElement('div');
+		var takeAgainTextDiv     = document.createElement('div');
+		var levelOfDifDiv      = document.createElement('div');
+		var levelOfDifTitleDiv = document.createElement('div');
+		var levelOfDifTextDiv  = document.createElement('div');
+		var numRatingsDiv      = document.createElement('div');
+		
+		var topComsSpan = document.createElement('span');
+		var topComsTitleSpan = document.createElement('span');
+		var topComsTextSpan = document.createElement('span');
 
-		//assign class names for styling
-		profNameDiv.className         = 'heading';
-		overallDiv.className          = 'overall';
-		overallTitleDiv.className     = 'title';
-		overallTextDiv.className      = 'text';
-		avgGradeDiv.className         = 'avgGrade';
-		avgGradeTitleDiv.className    = 'title';
-		avgGradeTextDiv.className     = 'text';
-		helpfulnessDiv.className      = 'helpfulness';
-		helpfulnessTitleDiv.className = 'title';
-		helpfulnessTextDiv.className  = 'text';
-		clarityDiv.className          = 'clarity';
-		clarityTitleDiv.className     = 'title';
-		clarityTextDiv.className      = 'text';
-		easinessDiv.className         = 'easiness';
-		easinessTitleDiv.className    = 'title';
-		easinessTextDiv.className     = 'text';
 
-		//put rating data in divs
+		//put rating data in divs and span
 		profNameDiv.innerHTML         = '<a href="'+ this.profURL + '" target="_blank">'+ proffName + " " + proflName; + '</a>';
 		overallTitleDiv.innerText     = 'Overall Quality';
-		overallTextDiv.innerText      = overall.innerHTML;
-		avgGradeTitleDiv.innerText    = 'Average Grade';
-		avgGradeTextDiv.innerText     = avgGrade.innerHTML;
-		helpfulnessTitleDiv.innerText = 'Helpfulness';
-		helpfulnessTextDiv.innerText  = helpfulness.innerHTML;
-		clarityTitleDiv.innerText     = 'Clarity';
-		clarityTextDiv.innerText      = clarity.innerHTML;
-		easinessTitleDiv.innerText    = 'Easiness';
-		easinessTextDiv.innerText     = easiness.innerHTML;
+		overallTextDiv.innerText      = overall.innerHTML.trim().concat(scale);
+		takeAgainTitleDiv.innerText    = 'Would Take Again';
+		takeAgainTextDiv.innerText     = takeAgain.innerHTML.trim();
+		levelOfDifTitleDiv.innerText = 'Level of Difficulty';
+		levelOfDifTextDiv.innerText  = levelOfDif.innerHTML.trim().concat(scale);
+		topComsTitleSpan.innerText = 'Top 3 Comments';
+		console.log(topComs[2]);
+		if (typeof topComs[2] !== 'undefined') {
+      topComsTextSpan.innerText  = "\n" + topComs[0].innerHTML.split('<')[0].concat("\n" + topComs[1].innerHTML.split('<')[0].concat("\n" + topComs[2].innerHTML.split('<')[0])); 
+}
+    else {
+      topComsTextSpan.innerText = "\nNot available."
+    }
+		
+		numRatings = numRatings.slice(9).split(' ')[0] //check to see if "ratings" is singular or plural
+    if (numRatings == '1') {
+        numRatingsDiv.innerHTML = '<a href="' + this.profURL + '" target="_blank">' + numRatings + ' rating</a>';
+    } else {
+        numRatingsDiv.innerHTML = '<a href="' + this.profURL + '" target="_blank">' + numRatings + ' ratings</a>';
+    }
+
 
 		//add divs to popup
 		popup.innerHTML = ''; //remove 'loading...' text
 
 		overallTitleDiv.appendChild(overallTextDiv);
 		overallDiv.appendChild(overallTitleDiv);          
-		avgGradeTitleDiv.appendChild(avgGradeTextDiv);
-		avgGradeDiv.appendChild(avgGradeTitleDiv);
-		helpfulnessTitleDiv.appendChild(helpfulnessTextDiv);
-		helpfulnessDiv.appendChild(helpfulnessTitleDiv);
-		clarityTitleDiv.appendChild(clarityTextDiv);
-		clarityDiv.appendChild(clarityTitleDiv);
-		easinessTitleDiv.appendChild(easinessTextDiv);
-		easinessDiv.appendChild(easinessTitleDiv);
-
+		takeAgainTitleDiv.appendChild(takeAgainTextDiv);
+		takeAgainDiv.appendChild(takeAgainTitleDiv);
+		levelOfDifTitleDiv.appendChild(levelOfDifTextDiv);
+		levelOfDifDiv.appendChild(levelOfDifTitleDiv);
+		topComsTitleSpan.appendChild(topComsTextSpan);
+		topComsSpan.appendChild(topComsTitleSpan);
+		
 		popup.appendChild(profNameDiv);
 	    popup.appendChild(overallDiv);
-	    popup.appendChild(avgGradeDiv);
-	    popup.appendChild(helpfulnessDiv);
-	    popup.appendChild(clarityDiv);
-	    popup.appendChild(easinessDiv);
+	    popup.appendChild(takeAgainDiv);
+	    popup.appendChild(levelOfDifDiv);
+	    popup.appendChild(numRatingsDiv);
+	    popup.appendChild(topComsSpan);
+	    
+	  profNameDiv.className         = 'heading';
+		overallDiv.className          = 'overall';
+		overallTitleDiv.className     = 'title';
+		overallTextDiv.className      = 'text';
+		takeAgainDiv.className         = 'takeagain';
+		takeAgainTitleDiv.className    = 'title';
+		takeAgainTextDiv.className     = 'text';
+		levelOfDifDiv.className      = 'difficulty';
+		levelOfDifTitleDiv.className = 'title';
+		levelOfDifTextDiv.className  = 'text';
+		numRatingsDiv.className          = 'numRatings';
+		topComsSpan.className            = 'topcoms';
+		topComsTitleSpan.className       = 'title';
+    topComsTextSpan.className        = 'text';
 	 }
 }
 
