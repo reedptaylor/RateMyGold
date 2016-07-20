@@ -3,19 +3,19 @@
 <plist version="1.0">
 <dict>
 	<key>Author</key>
-	<string>Connor Mulcahey</string>
+	<string>Reed Taylor</string>
 	<key>Builder Version</key>
-	<string>10600.3.18</string>
+	<string>11601.7.7</string>
 	<key>CFBundleDisplayName</key>
 	<string>RateMyGold</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.connormulcahey.rateMyGold</string>
+	<string>com.reedtaylor.rateMyGold</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>2.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>4</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Global Page</key>
@@ -31,7 +31,7 @@
 			</array>
 			<key>Start</key>
 			<array>
-				<string>jquery.min.js</string>
+				<string>Injected.js</string>
 			</array>
 		</dict>
 		<key>Stylesheets</key>
@@ -46,7 +46,7 @@
 	<key>Description</key>
 	<string>A Safari port of the RateMyGold Chrome extension.</string>
 	<key>DeveloperIdentifier</key>
-	<string>X63259ZPUT</string>
+	<string>0000000000</string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>
@@ -60,6 +60,6 @@
 		</dict>
 	</dict>
 	<key>Website</key>
-	<string>http://cs.ucsb.edu/~connor00/ratemygold.html</string>
+	<string>https://github.com/reedptaylor/RateMyGold</string>
 </dict>
 </plist>
